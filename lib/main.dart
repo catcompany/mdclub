@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:instant_message/login.dart';
+import 'package:instant_message/register.dart';
 
 void main() {
   runApp(const MaterialApp(
-    title: "MainApp",
-    home: MainApp(),
+    title: "讯息",
+    home: LoginPage(),
   ));
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _LoginPage();
+  }
+}
+
+class _LoginPage extends State<LoginPage> {
+  late String _account;
+  late String _password;
+
+  void login() {
+    print("try to login");
+  }
 
   // build 方法创建视图
   @override
@@ -17,14 +31,14 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: '讯息',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primaryColor: Colors.pink,
       ),
       home: Scaffold(
         body: (Container(
           alignment: Alignment.topCenter,
           // width: 256,
           // height: 256,
-          margin: const EdgeInsets.only(left: 32, right: 32, top: 72),
+          margin: const EdgeInsets.only(left: 32, right: 32, top: 96),
           child: Column(
             children: [
               const Text(
@@ -36,7 +50,7 @@ class MainApp extends StatelessWidget {
               ),
               const TextField(
                 maxLines: 1,
-                maxLength: 16,
+                maxLength: 12,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   icon: Icon(Icons.person),
@@ -47,6 +61,7 @@ class MainApp extends StatelessWidget {
               const TextField(
                 maxLines: 1,
                 maxLength: 16,
+                obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
@@ -64,10 +79,14 @@ class MainApp extends StatelessWidget {
                     child: MaterialButton(
                       child: const Text(
                         "登录",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                       color: Colors.blue,
-                      onPressed: () {},
+                      onPressed: () {
+                        login();
+                      },
                     ),
                   ),
                   Container(
@@ -82,7 +101,7 @@ class MainApp extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                                builder: (context) => const RegisterPage()));
                       },
                     ),
                   ),

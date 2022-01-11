@@ -1,4 +1,9 @@
 package com.imorning.im
 
-class IMApp {
+import android.app.Application
+
+class IMApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+    }
 }
