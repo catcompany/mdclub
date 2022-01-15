@@ -1,8 +1,8 @@
 package com.imorning.im
 
-import android.app.Application
+import io.flutter.app.FlutterApplication
 
-class IMApp : Application() {
+class IMApp : FlutterApplication() {
     override fun onCreate() {
         super.onCreate()
     }
