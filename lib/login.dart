@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:instant_message/utils/global.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,6 +17,23 @@ class _LoginPageState extends State<LoginPage> {
 
   final FocusNode _accountNode = FocusNode();
   final FocusNode _passwordNode = FocusNode();
+
+  late Response response;
+  var dio = Dio();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _account.dispose();
+    _password.dispose();
+    _accountNode.dispose();
+    _passwordNode.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +85,27 @@ class _LoginPageState extends State<LoginPage> {
                 height: 12,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_account.text.isEmpty || _password.text.isEmpty) {
+                    return;
+                  }
+                  var account = _account.text;
+                  var password = _password.text;
+                  var loginInfo = '''
+                  {
+                  "data": {
+                    "attributes": {
+                      "username": "$account",
+                      "password": "$password"
+                    }
+                  }
+                  ''';
+                  response = await dio.post(
+                    Global.login,
+                    data: loginInfo,
+                  );
+                  debugPrint(response.toString());
+                  if (response.data != null) {
                     return;
                   }
                   Navigator.of(context).push(
@@ -90,20 +128,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _account.dispose();
-    _password.dispose();
-    _accountNode.dispose();
-    _passwordNode.dispose();
   }
 }
 

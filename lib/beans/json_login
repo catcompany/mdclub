@@ -1,0 +1,53 @@
+import 'package:json_annotation/json_annotation.dart'; 
+  
+part 'json_login.g.dart';
+
+
+@JsonSerializable()
+  class json_login extends Object {
+
+  @JsonKey(name: 'data')
+  Data data;
+
+  json_login(this.data,);
+
+  factory json_login.fromJson(Map<String, dynamic> srcJson) => _$json_loginFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$json_loginToJson(this);
+
+}
+
+  
+@JsonSerializable()
+  class Data extends Object {
+
+  @JsonKey(name: 'attributes')
+  Attributes attributes;
+
+  Data(this.attributes,);
+
+  factory Data.fromJson(Map<String, dynamic> srcJson) => _$DataFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+
+}
+
+  
+@JsonSerializable()
+  class Attributes extends Object {
+
+  @JsonKey(name: 'username')
+  String username;
+
+  @JsonKey(name: 'password')
+  String password;
+
+  Attributes(this.username,this.password,);
+
+  factory Attributes.fromJson(Map<String, dynamic> srcJson) => _$AttributesFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$AttributesToJson(this);
+
+}
+
+  

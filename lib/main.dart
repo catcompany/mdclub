@@ -5,6 +5,7 @@ void main(List<String> args) {
   return runApp(
     const MaterialApp(
       home: LoginPage(),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
