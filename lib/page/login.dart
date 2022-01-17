@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:instant_message/utils/global.dart';
+import 'package:instant_message/page/tabs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -91,75 +91,16 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   var account = _account.text;
                   var password = _password.text;
-                  var loginInfo = '''
-                  {
-                  "data": {
-                    "attributes": {
-                      "username": "$account",
-                      "password": "$password"
-                    }
-                  }
-                  ''';
-                  response = await dio.post(
-                    Global.login,
-                    data: loginInfo,
-                  );
-                  debugPrint(response.toString());
-                  if (response.data != null) {
-                    return;
-                  }
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const TestMainPage();
-                      },
-                      settings: const RouteSettings(
-                        arguments: "iMorning",
-                      ),
-                      maintainState: false,
-                      fullscreenDialog: false,
-                    ),
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                    (route) => false,
                   );
                 },
                 child: const Text("登录"),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class TestMainPage extends StatelessWidget {
-  const TestMainPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    dynamic account = ModalRoute.of(context)?.settings.arguments;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("$account"),
-        centerTitle: true,
-      ),
-      body: Container(
-        width: double.infinity,
-        color: Colors.greenAccent[100],
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              '登陆成功！',
-            ),
-            ElevatedButton(
-              child: const Text('返回前一个页面'),
-              onPressed: () {
-                //返回上一个页面
-                Navigator.pop(context);
-              },
-            ),
-          ],
         ),
       ),
     );
