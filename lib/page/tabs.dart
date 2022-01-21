@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:instant_message/page/profile.dart';
 
 import 'contact.dart';
 import 'message.dart';
@@ -9,17 +8,14 @@ class MainPage extends StatefulWidget {
   final List<Widget> widgets = [
     const MessagePage(),
     const ContactPage(),
-    const ProfilePage()
   ];
+
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  final List<String> tabs = ['消息', '联系人', '个人信息'];
-  late final TabController _tabController;
-
   int _pageIndex = 0;
 
   @override
@@ -29,38 +25,38 @@ class _MainPageState extends State<MainPage>
         title: const Text("讯息"),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: tabs
-              .map((title) => Tab(
-                    text: title,
-                  ))
-              .toList(),
-        ),
       ),
       drawer: const SettingsDrawer(),
-      body: TabBarView(
-        children: widget.widgets,
-        controller: _tabController,
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(
+            label: "消息",
+            icon: Icon(Icons.message),
+          ),
+          BottomNavigationBarItem(
+            label: "联系人",
+            icon: Icon(Icons.contacts),
+          ),
+        ],
+        currentIndex: _pageIndex,
+        onTap: (v) {
+          setState(() {
+            _pageIndex = v;
+          });
+        },
       ),
+      body: widget.widgets[_pageIndex],
     );
   }
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-        initialIndex: _pageIndex, length: tabs.length, vsync: this);
-    _tabController.addListener(() {
-      setState(() {
-        _pageIndex = _tabController.index;
-      });
-    });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
   }
 }
