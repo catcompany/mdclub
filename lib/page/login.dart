@@ -1,6 +1,10 @@
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:mdclub/page/tabs.dart';
+import 'package:mdclub/utils/device_utils.dart';
+import 'package:mdclub/utils/httputils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   final FocusNode _passwordNode = FocusNode();
 
   late Response response;
-  var dio = Dio();
+  var dio = HttpUtils().getDio();
 
   @override
   void initState() {
@@ -61,7 +65,6 @@ class _LoginPageState extends State<LoginPage> {
                     return "请输入账号";
                   }
                 },
-                onFieldSubmitted: (value) {},
               ),
               const SizedBox(
                 height: 10,
@@ -86,9 +89,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  if (_account.text.isEmpty || _password.text.isEmpty) {
-                    return;
-                  }
                   var account = _account.text;
                   var password = _password.text;
                   _login(account, password);
@@ -102,7 +102,22 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _login(String account, String password) {
+  Future<void> _login(String account, String password) async {
+    if (account.isEmpty || password.isEmpty) {
+      EasyLoading.showError("账号或密码为空");
+      return;
+    }
+    Map loginInfo = {};
+    loginInfo['name'] = account;
+    loginInfo['password'] = password;
+
+    DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+    final deviceInfo = await deviceInfoPlugin.deviceInfo;
+    final map = deviceInfo.toMap();
+    map.forEach((key, value) => debugPrint("$key : $value"));
+
+    debugPrint(await DeviceUtils().platformModel);
+    return;
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => MainPage()),

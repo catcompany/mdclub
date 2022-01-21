@@ -1,5 +1,5 @@
 name: mdclub
-description: my im app build with flutter.
+description: mbclub app build with flutter.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -35,7 +35,14 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # library for http requets
-  dio:^2.1.0
+  dio: ^4.0.4
+
+  # json
+  json_annotation: ^4.4.0
+
+  # for show toast
+  flutter_easyloading: ^3.0.3
+
 
 dev_dependencies:
   flutter_test:
