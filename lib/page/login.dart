@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:instant_message/page/tabs.dart';
+import 'package:mdclub/page/tabs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -91,11 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   var account = _account.text;
                   var password = _password.text;
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainPage()),
-                    (route) => false,
-                  );
+                  _login(account, password);
                 },
                 child: const Text("登录"),
               ),
@@ -103,6 +99,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _login(String account, String password) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => MainPage()),
+      (route) => false,
     );
   }
 }

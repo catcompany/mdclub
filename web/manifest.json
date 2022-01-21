@@ -1,6 +1,6 @@
 {
-    "name": "instant_message",
-    "short_name": "instant_message",
+    "name": "mdclub",
+    "short_name": "mdclub",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

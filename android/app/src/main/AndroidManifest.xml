@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.imorning.im">
+    package="com.imorning.mdclub">
 
     <application
-        android:name="com.imorning.im.IMApp"
+        android:name="com.imorning.mdclub.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name">
         <activity

@@ -5,12 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "instant_message",
+      "name": "mdclub",
       "request": "launch",
       "type": "dart",
     },
     {
-      "name": "instant_message (profile mode)",
+      "name": "mdclub (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"

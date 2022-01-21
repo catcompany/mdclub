@@ -1,8 +1,8 @@
-package com.imorning.im
+package com.imorning.mdclub
 
 import io.flutter.app.FlutterApplication
 
-class IMApp : FlutterApplication() {
+class App : FlutterApplication() {
     override fun onCreate() {
         super.onCreate()
     }

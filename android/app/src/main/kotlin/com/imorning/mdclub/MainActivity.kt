@@ -1,4 +1,4 @@
-package com.imorning.im
+package com.imorning.mdclub
 
 import io.flutter.embedding.android.FlutterActivity
 

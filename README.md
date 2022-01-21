@@ -1,6 +1,6 @@
-# instant_message
+# MDClub
 
-A Flutter project for instant messaging, which is cross-platform.
+A Flutter project for MDClub bbs, which is cross-platform.
 
 ## Getting Started
 
