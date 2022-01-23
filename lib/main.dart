@@ -8,7 +8,7 @@ import 'package:mdclub/page/tabs.dart';
 void main(List<String> args) {
   return runApp(
     MaterialApp(
-      home: LoginPage(),
+      home: const LoginPage(),
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: true,
     ),
